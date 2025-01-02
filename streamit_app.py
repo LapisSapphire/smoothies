@@ -15,7 +15,7 @@ st.write(
 
 
 name_on_order = st.text_input('Name of Smoothie')
-st.write('The nane on your Smoothie will be ', name_on_order)
+st.write('The name on your Smoothie will be ', name_on_order)
 
 cnx=st.connection("snowflake")
 session = cnx.session()
@@ -34,7 +34,7 @@ if ingredients_list:
         st.subheader(fruit_chosen + ' Nutrion Information')
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+ fruit_chosen)
         st_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-        st.write(ingredients_string)
+        #st.write(ingredients_string)
         my_insert_stmt=""" insert into smoothies.public.orders(ingredients, name_on_order)
         values ('"""+ ingredients_string + """','"""+ name_on_order +"""')"""
         time_to_insert =st.button('Submit Order')
